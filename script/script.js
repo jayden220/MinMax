@@ -1,15 +1,24 @@
-let maximum = document.getElementsByClassName('max-number')
-let minimum = document.getElementsByClassName('min-number')
+let maximum = document.getElementsByClassName('max-number')[0]
+let minimum = document.querySelector('.min-number')
+let input = document.getElementsByTagName('input')[0]
+let reset = document.querySelector('button')
+
 
 function minAndMax() {
-    
-    let list = [23,45,67,32,78]
-    
-    minVal = Math.min(...list)
-    maxVal = Math.max(...list)
+    let inputVal = input.value.split(',').map(Number);
 
-    console.log('Minimum number is = ' + minVal)
-    console.log('Maximum number is = ' + maxVal)
+    let minVal = Math.min(...inputVal)
+    let maxVal = Math.max(...inputVal)
+
+    maximum.innerText = maxVal
+    minimum.innerText = minVal
 }
 
-minAndMax()
+function clear(){
+maximum.innerText = ''
+minimum.innerText = ''
+input.value = ''
+}
+
+input.addEventListener('input', minAndMax)
+reset.addEventListener('click',clear)
